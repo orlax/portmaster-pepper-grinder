@@ -350,4 +350,49 @@ Number of sounds: 267
 Longest preloaded: 276.3232727050781
 Startup data read took 2.725824752
 Startup data size: 58MB
-Num to preload: 240
+Num to preload: 240 <---- HERE it will load for a while like 1 minute  or something and then
+
+Sound bank took 78.56270907999999
+Create window: 1280 720 8226
+[BOX64] 5797|Call to dlopen("/media/SHARE/roms/ports/pepper/gl4es/libGL.so.1"/0x7fc0c3a92c, 2)
+[BOX64] dlopen: New handle 0x8 (/media/SHARE/roms/ports/pepper/gl4es/libGL.so.1), dlopened=0
+[BOX64] 5797|Call to dlopen("libEGL.so.1"/0x7fc0c3ac67, 2)
+[BOX64] Trying to load "libEGL.so.1"
+[BOX64] Simplified name is "libEGL.so.1"
+[BOX64] Using native(wrapped) libEGL.so.1
+[BOX64] dlopen: New handle 0x9 (libEGL.so.1), dlopened=1
+[BOX64] 5797|Call to dlsym(0x9, "eglChooseConfig")0x300e0000
+[BOX64] 5797|Call to dlsym(0x9, "eglGetDisplay")0x300e0020
+[BOX64] 5797|Call to dlsym(0x9, "eglInitialize")0x300e0040
+[BOX64] 5797|Call to dlsym(0x9, "eglTerminate")0x300e0060
+[BOX64] 5797|Call to dlsym(0x9, "eglGetProcAddress")0x300e0080
+[BOX64] 5797|Call to dlsym(0x9, "eglChooseConfig")0x300e0000
+[BOX64] 5797|Call to dlsym(0x9, "eglGetConfigAttrib")0x300e00a0
+[BOX64] 5797|Call to dlsym(0x9, "eglCreateContext")0x300e00c0
+[BOX64] 5797|Call to dlsym(0x9, "eglDestroyContext")0x300e00e0
+[BOX64] 5797|Call to dlsym(0x9, "eglCreatePbufferSurface")0x300e0100
+[BOX64] 5797|Call to dlsym(0x9, "eglCreateWindowSurface")0x300e0120
+[BOX64] 5797|Call to dlsym(0x9, "eglDestroySurface")0x300e0140
+[BOX64] 5797|Call to dlsym(0x9, "eglMakeCurrent")0x300e0160
+[BOX64] 5797|Call to dlsym(0x9, "eglSwapBuffers")0x300e0180
+[BOX64] 5797|Call to dlsym(0x9, "eglSwapInterval")0x300e01a0
+[BOX64] 5797|Call to dlsym(0x9, "eglWaitNative")0x300e01c0
+[BOX64] 5797|Call to dlsym(0x9, "eglWaitGL")0x300e01e0
+[BOX64] 5797|Call to dlsym(0x9, "eglBindAPI")0x300e0200
+[BOX64] 5797|Call to dlsym(0x9, "eglQueryAPI")0x300e0220
+[BOX64] 5797|Call to dlsym(0x9, "eglQueryString")0x300e0240
+[BOX64] 5797|Call to dlsym(0x9, "eglGetError")0x300e0260
+[BOX64] Calling getGLProcAddress[0x7f95a057e0]("eglQueryDevicesEXT") => (nil)
+[BOX64] Calling getGLProcAddress[0x7f95a057e0]("eglGetPlatformDisplayEXT") => (nil)
+[BOX64] Warning, no wrapper for eglGetPlatformDisplayEXT
+[BOX64] Calling getGLProcAddress[0x7f95a057e0]("eglCreateSyncKHR") => 0x300000c0
+[BOX64] Calling getGLProcAddress[0x7f95a057e0]("eglDestroySyncKHR") => 0x300000e0
+[BOX64] Calling getGLProcAddress[0x7f95a057e0]("eglDupNativeFenceFDANDROID") => 0x30000100
+[BOX64] Calling getGLProcAddress[0x7f95a057e0]("eglWaitSyncKHR") => 0x30000120
+[BOX64] Calling getGLProcAddress[0x7f95a057e0]("eglClientWaitSyncKHR") => 0x30000140
+[BOX64] Call to dlclose(0x9)
+[BOX64] Call to dlclose(0x8)
+Could not open window: eglQueryDevicesEXT is missing (EXT_device_enumeration not supported by the drivers?) <- THE ERROR
+[BOX64] Sigfault/Segbus while quitting, exiting silently
+/userdata/system/.local/share/PortMaster/funcs.txt: línea 114:  5510 Killed                  $GPTOKEYB "Chowdren" -c "$GAMEDIR/pepper.gptk"
+[root@KNULLI /media/SHARE/roms/ports/pepper]# 

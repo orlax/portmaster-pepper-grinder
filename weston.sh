@@ -62,7 +62,6 @@ if [[ "$CFW_NAME" = "ROCKNIX" ]]; then
   fi
 fi
 
-audio_backend=${audio_backend:-pulseaudio}
 # the default pulseaudio backend doesn't always work well
 if [[ "$CFW_NAME" = "ROCKNIX" ]] || [[ "$CFW_NAME" = "AmberELEC" ]]; then
   audio_backend=alsa
@@ -73,10 +72,10 @@ export SENTRY_DSN=""
 export SENTRY_DISABLE=1
 
 export CHOWDREN_FPS=30
-export LIBGL_FB_TEX_SCALE=0.125
+export LIBGL_FB_TEX_SCALE=0.25
 export LIBGL_SKIPTEXCOPIES=1
 
-export BOX64_LOG=0
+export BOX64_LOG=1
 export BOX64_ALLOWMISSINGLIBS=1
 export BOX64_DYNAREC=1
 
@@ -85,19 +84,10 @@ pushd $DATADIR/
 
 $GPTOKEYB "$BINARY" -k &
 
-
-#this mode results on an out of memory error
-#$weston_dir/westonwrap.sh headless noop kiosk crusty_glx_gl4es \
-
-#this mode results on some other errors 
-#$weston_dir/westonwrap.sh headless noop kiosk crusty_gbm
-
 # Start Westonpack
 $ESUDO env \
 SDL_AUDIODRIVER=$audio_backend \
-BOX64_LD_LIBRARY_PATH="./bin64":"$GAMEDIR/gl4es":"$GAMEDIR/box64/native":"$GAMEDIR/lib" \
-WRAPPED_LIBRARY_PATH="$GAMEDIR/gl4es:$GAMEDIR/lib:$GAMEDIR/box64/native:$GAMEDIR/gamedata/bin64" \
-LD_LIBRARY_PATH="$GAMEDIR/gl4es:$GAMEDIR/lib:$LD_LIBRARY_PATH" \
+BOX64_LD_LIBRARY_PATH="./bin64":"$GAMEDIR/box64/native" \
 $weston_dir/westonwrap.sh headless noop kiosk crusty_glx_gl4es \
 XDG_CONFIG_HOME=$CONFDIR \
 XDG_DATA_HOME=$LOCALDIR \

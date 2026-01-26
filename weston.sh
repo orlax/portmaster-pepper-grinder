@@ -93,6 +93,8 @@ XDG_CONFIG_HOME=$CONFDIR \
 XDG_DATA_HOME=$LOCALDIR \
 $GAMEDIR/box64/box64 ./bin64/$BINARY
 
+GAME_RC=$?
+
 popd
 
 # Clean up after ourselves
@@ -100,5 +102,25 @@ $ESUDO $weston_dir/westonwrap.sh cleanup
 if [[ "$PM_CAN_MOUNT" != "N" ]]; then
     $ESUDO umount "${weston_dir}"
 fi
+
+# --- Post-mortem diagnostics (logged to log.txt) ---
+echo
+echo "===== POST-MORTEM $(date) ====="
+echo "Exit code: $GAME_RC"
+echo "--- swapon --show ---"
+swapon --show || true
+echo "--- /proc/swaps ---"
+cat /proc/swaps || true
+echo "--- free -m ---"
+free -m || true
+echo "--- OOM (dmesg tail) ---"
+dmesg | tail -n 120 | grep -i -E "oom|killed process|out of memory" || true
+echo "--- zram stats ---"
+cat /sys/block/zram0/mm_stat 2>/dev/null || true
+cat /sys/block/zram0/stat 2>/dev/null || true
+echo "===== END POST-MORTEM ====="
+echo
+# --- end post-mortem ---
+
 
 pm_finish

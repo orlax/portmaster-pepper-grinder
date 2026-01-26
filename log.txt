@@ -1,0 +1,460 @@
+umount: /tmp/weston: no montado.
+/userdata/roms/ports/pepper/gamedata /userdata/roms/ports/pepper
+Westonwrap 0.2.7.1
+gptokeyb is running, using it as a kill signal
+grep: /usr/lib/python3.11/site-packages/configgen/generators/sh/shGenerator.py: No such file or directory
+cp: no se puede efectuar `stat' sobre '/usr/lib/python3.11/site-packages/configgen/generators/sh/shGenerator.py': No such file or directory
+grep: /usr/lib/python3.11/site-packages/configgen/generators/sh/shGenerator.py: No such file or directory
+cp: no se puede crear el fichero regular '/usr/lib/python3.11/site-packages/configgen/generators/sh/shGenerator.py': No such file or directory
+Making /boot writable...
+Mounting the overlay file...
+Saving the real overlay to disk...
+sending incremental file list
+
+sent 1,275 bytes  received 38 bytes  2,626.00 bytes/sec
+total size is 39,022  speedup is 29.72
+Umounting the overlay file...
+Making /boot read only...
+Synchronizing...
+Success.
+/userdata/system/.local/share/PortMaster/control.txt: línea 48: /tmp/gamecontrollerdb.txt: No such file or directory
+/tmp/weston/westonwrap.sh: línea 95: [: : se esperaba una expresión entera
+Running in aarch64 mode
+Checking if gptokeyb is still running...
+Error: libgbm.so.1: cannot open shared object file: No such file or directory
+System does not have GBM/DRM support, setting up fake DRM device
+mkdir: no se puede crear el directorio «/dev/dri»: File exists
+mknod: /dev/dri/card0: File exists
+Setting up Headless backend
+Setting virtual resolution to 640 x 480
+Setting up No-Op renderer
+Setting up Kiosk shell
+Error: libGL.so.1: cannot open shared object file: No such file or directory
+System does not have libGL, using included Mesa libs for Weston and XWayland
+Setting up system Libs
+rm: no se puede borrar '/tmp/lib': No such file or directory
+Setting up crusty_glx_gl4es
+Prep for CrustyGBM is required...
+Setting up Crusty references
+Setting up XDG_RUNTIME_DIR
+Starting Seatd
+00:00:00.000 [INFO] [seatd/seat.c:39] Created VT-bound seat seat0
+00:00:00.000 [INFO] [seatd/seatd.c:194] seatd started
+Checking if gptokeyb is still running...
+XWAYLAND_LD_LIBRARY_PATH=/tmp/weston/lib_aarch64/graphics/mesa_x11_stub
+LD_LIBRARY_PATH=:/tmp/weston/lib_aarch64:
+LD_PRELOAD=
+SHELL=/bin/bash
+SENTRY_DISABLE=1
+CFW_GLIBC=240
+CFW_VERSION=gladiator-ii
+DEVICE_HAS_AARCH64=Y
+CHOWDREN_FPS=30
+DEVICE_HAS_ARMHF=Y
+WESTON_DATA_DIR=/tmp/weston/data
+DEVICE_ARCH=aarch64
+ESUDOKILL=-1
+weston_shell=kiosk-shell.so
+EDITOR=/bin/vi
+PWD=/tmp/weston
+DEVICE_CPU=h700
+LOGNAME=root
+XDG_SESSION_TYPE=x11
+weston_dir=/tmp/weston
+CRUSTY_GL4ES=1
+BOX64_LOG=1
+weston_preload=
+game_dir=/userdata/roms/ports/pepper/gamedata
+westonmod_dir=/tmp/weston/lib_aarch64/weston
+HOME=/userdata/system
+SENTRY_DSN=
+ASPECT_X=4
+LANG=es_ES.UTF-8
+ASPECT_Y=3
+ANALOG_STICKS=1
+PM_RESOURCE_DIR=/userdata/system/.local/share/PortMaster/resources
+BOX64_LD_LIBRARY_PATH=./bin64:/userdata/roms/ports/pepper/box64/native
+libweston_dir=/tmp/weston/lib_aarch64/libweston-14
+gllib_path=/tmp/weston/lib_aarch64/graphics/gl4es_glxpass/:/tmp/weston/lib_aarch64/graphics/crusty_glx/
+LIBGL_SKIPTEXCOPIES=1
+SSH_CONNECTION=192.168.0.5 50310 192.168.0.9 22
+CRUSTY_LIBEGL=/usr/lib64/libEGL.so
+ESUDO=
+DISPLAY_WIDTH=640
+DEVICE_NAME=RG40XX-V
+WESTON_HEADLESS_WIDTH=640
+SDL_GAMECONTROLLERCONFIG_FILE=/tmp/gamecontrollerdb.txt
+DEVICE_HAS_X86=N
+DEVICE_INFO_VERSION=0.1.15
+TERM=xterm-256color
+GPTOKEYB2= env LD_PRELOAD=/userdata/system/.local/share/PortMaster/libinterpose.aarch64.so /userdata/system/.local/share/PortMaster/gptokeyb2 -1
+USER=root
+SDL_AUDIODRIVER=
+DISPLAY_ORIENTATION=0
+PYSDL2_DLL_PATH=/usr/lib
+BOX64_ALLOWMISSINGLIBS=1
+APP_LIBRARY_PATH=/tmp/weston/lib_aarch64/extra_wayland/:/tmp/weston/lib_aarch64
+WESTON_HEADLESS_HEIGHT=480
+gllib_preload=/tmp/weston/lib_aarch64/graphics/crusty_glx//libcrusty.so
+PM_PORTNAME=weston
+DISPLAY_HEIGHT=480
+SHLVL=3
+BOX64_DYNAREC=1
+LIBGL_FB_TEX_SCALE=0.25
+GPTOKEYB= /userdata/system/.local/share/PortMaster/gptokeyb -1
+weston_backend=headless
+DEVICE_HAS_X86_64=N
+CRUSTY_LIBSDL=/usr/lib64/libSDL2.so
+WESTON_CONFIG=/tmp/weston/weston.ini
+XDG_RUNTIME_DIR=/tmp/weston_runtime
+WESTON_LIBEXEC_DIR=/tmp/weston/libexec
+SSH_CLIENT=192.168.0.5 50310 22
+PM_CAN_MOUNT=Y
+PM_VERSION=2026.01.19-0955
+weston_renderer=--renderer=noop
+DEVICE_RAM=1
+PATH=/bin:/sbin:/usr/bin:/usr/sbin
+directory=userdata/roms
+PM_FUNCS_VERSION=3
+DBUS_SESSION_BUS_ADDRESS=unix:path=/run/dbus/system_bus_socket
+WESTON_MODULE_MAP=x11-backend.so=/tmp/weston/lib_aarch64/libweston-14/x11-backend.so;wayland-backend.so=/tmp/weston/lib_aarch64/libweston-14/wayland-backend.so;drm-backend.so=/tmp/weston/lib_aarch64/libweston-14/drm-backend.so;headless-backend.so=/tmp/weston/lib_aarch64/libweston-14/headless-backend.so;gl-renderer.so=/tmp/weston/lib_aarch64/libweston-14/gl-renderer.so;kiosk-shell.so=/tmp/weston/lib_aarch64/weston/kiosk-shell.so;desktop-shell.so=/tmp/weston/lib_aarch64/weston/desktop-shell.so;fullscreen-shell.so=/tmp/weston/lib_aarch64/weston/fullscreen-shell.so;xwayland.so=/tmp/weston/lib_aarch64/libweston-14/xwayland.so;
+SSH_TTY=/dev/pts/0
+CFW_NAME=knulli
+XKB_CONFIG_ROOT=/tmp/share/xkb
+PM_SCRIPTNAME=weston.sh
+OLDPWD=/userdata/roms/ports/pepper/gamedata
+_=/bin/printenv
+Starting Weston
+./wp_weston: /tmp/weston/lib_aarch64/libxkbcommon.so.0: no version information available (required by /tmp/weston/lib_aarch64/libweston-14.so.0)
+Date: 2026-01-26 -05
+[18:37:58.972] weston 13.0.90
+               https://wayland.freedesktop.org
+               Bug reports to: https://gitlab.freedesktop.org/wayland/weston/issues/
+               Build: 13.0.0-110-g215cceb4+
+[18:37:58.973] Command line: ./wp_weston -c /tmp/weston/weston.ini -B headless --renderer=noop --shell=kiosk-shell.so -i0 -Swayland-5 --xwayland
+[18:37:58.973] OS: Linux, 4.9.170, #12 SMP PREEMPT Mon Dec 8 15:53:56 CST 2025, aarch64
+[18:37:58.973] Flight recorder: enabled
+[18:37:58.973] warning: XDG_RUNTIME_DIR "/tmp/weston_runtime" is not configured
+correctly.  Unix access mode must be 0700 (current mode is 0755),
+and must be owned by the user UID 0 (current owner is UID 0).
+Refer to your distribution on how to get it, or
+http://www.freedesktop.org/wiki/Specifications/basedir-spec
+on how to implement it.
+[18:37:58.975] Using config file '/tmp/weston/weston.ini'
+[18:37:58.976] Output repaint window is 7 ms maximum.
+[18:37:58.979] Loading module '/tmp/weston/lib_aarch64/libweston-14/headless-backend.so'
+[18:37:59.072] Trying libseat launcher...
+00:00:00.815 [INFO] [seatd/server.c:146] New client connected (pid: 26572, uid: 0, gid: 0)
+00:00:00.815 [INFO] [seatd/seat.c:169] Added client 1 to seat0
+00:00:00.816 [INFO] [seatd/seat.c:459] Opened client 1 on seat0
+[18:37:59.073] [libseat/libseat.c:73] Seat opened with backend 'seatd'
+[18:37:59.073] [libseat/backend/seatd.c:212] Enabling seat
+[18:37:59.073] libseat: session control granted
+[18:37:59.073] 0x7fcd3efcd0 0x558a9a35c0 0x558a9adca0 seat0 0x7f7bfab678
+[18:37:59.091] event2  - dierct-keys-polled: is tagged by udev as: Keyboard
+[18:37:59.092] event2  - dierct-keys-polled: device is a keyboard
+[18:37:59.094] event1  - Anbernic RG40XX-H Controller: is tagged by udev as: Keyboard Joystick
+[18:37:59.094] event1  - Anbernic RG40XX-H Controller: device is a joystick or a gamepad, ignoring
+[18:37:59.157] event1  - not using input device '/dev/input/event1'
+[18:37:59.160] event0  - axp2202-pek: is tagged by udev as: Keyboard
+[18:37:59.160] event0  - axp2202-pek: device is a keyboard
+[18:37:59.262] libinput: configuring device "dierct-keys-polled".
+[18:37:59.262] libinput: configuring device "axp2202-pek".
+[18:37:59.263] Registered plugin API 'weston_windowed_output_api_v2' of size 16
+[18:37:59.263] Color manager: no-op
+                 protocol support: no
+[18:37:59.263] Output 'headless' attempts EOTF mode: SDR
+[18:37:59.263] Output 'headless' using color profile: stock sRGB color profile
+[18:37:59.263] associating input device event2 with output headless (none by udev)
+[18:37:59.263] associating input device event0 with output headless (none by udev)
+[18:37:59.263] Output 'headless' enabled with head(s) headless
+[18:37:59.263] Compositor capabilities:
+               arbitrary surface rotation: no
+               screen capture uses y-flip: no
+               cursor planes: no
+               arbitrary resolutions: no
+               view mask clipping: no
+               explicit sync: no
+               color operations: no
+               presentation clock: CLOCK_MONOTONIC_RAW, id 4
+               presentation clock resolution: 0.000000001 s
+[18:37:59.267] Loading module '/tmp/weston/lib_aarch64/weston/kiosk-shell.so'
+[18:37:59.272] Loading module '/tmp/weston/lib_aarch64/libweston-14/xwayland.so'
+[18:37:59.285] Registered plugin API 'weston_xwayland_v3' of size 32
+[18:37:59.285] Registered plugin API 'weston_xwayland_surface_v1' of size 16
+[18:37:59.285] unlinking stale lock file /tmp/.X0-lock
+[18:37:59.286] xserver listening on display :0
+Checking if gptokeyb is still running...
+Running your command XDG_CONFIG_HOME=/userdata/roms/ports/pepper/conf/config XDG_DATA_HOME=/userdata/roms/ports/pepper/conf/local /userdata/roms/ports/pepper/box64/box64 ./bin64/Chowdren
+---------------------------------------------------------------------------------------------------
+Crusty loaded by /userdata/roms/ports/pepper/box64/box64
+Started initializing...
+Version 0.4 built on 2025-04-10 22:01:57 with options: GLX_FRONTEND SDL2_BACKEND GBM_FIX CONTROLLER_HOOK CURSOR CURSOR_X EGL_LOADER SDL_LOADER GL4ES 
+Initializing EGL Loader
+Done initializing EGL Loader. Hooked functions: 0 / Passed through: 34
+Initializing SDL Loader
+Done initializing SDL Loader. Hooked functions: 0 / Passed through: 18
+Done initializing.
+[BOX64] Dynarec for ARM64, with extension: ASIMD AES CRC32 PMULL SHA1 SHA2
+[BOX64] Running on Crusty loaded by sh
+Started initializing...
+Version 0.4 built on 2025-04-10 22:01:57 with options: GLX_FRONTEND SDL2_BACKEND GBM_FIX CONTROLLER_HOOK CURSOR CURSOR_X EGL_LOADER SDL_LOADER GL4ES 
+Initi with 4 cores, pagesize: 4096
+[BOX64] Will use hardware counter measured at 24.0 MHz emulating 3.0 GHz
+[BOX64] Didn't detect 48bits of address space, considering it's 39bits
+[BOX64] Counted 92 Env var
+[BOX64] BOX64 trying to Preload /tmp/weston/lib_aarch64/graphics/crusty_glx//libcrusty.so 
+[BOX64] Library search path: 
+[BOX64] Binary search path: ./:bin/:/bin/:/sbin/:/usr/bin/:/usr/sbin/
+[BOX64] Looking for ./bin64/Chowdren
+[BOX64] BOX64ENV: Variables overridden:
+	BOX64_ALLOWMISSINGLIBS=1
+	BOX64_LD_LIBRARY_PATH=./bin64:/userdata/roms/ports/pepper/box64/native
+	BOX64_LOG=1
+	BOX64_DYNAREC=1
+[BOX64] Rename process to "Chowdren"
+[BOX64] Warning, cannot pre-load /tmp/weston/lib_aarch64/graphics/crusty_glx//libcrusty.so
+[BOX64] Using native(wrapped) libGL.so.1
+[BOX64] Using native(wrapped) libuuid.so.1
+[BOX64] Using native(wrapped) libm.so.6
+[BOX64] Using native(wrapped) libpthread.so.0
+[BOX64] Using native(wrapped) libc.so.6
+[BOX64] Using native(wrapped) ld-linux-x86-64.so.2
+[BOX64] Using native(wrapped) libdl.so.2
+[BOX64] Using native(wrapped) libutil.so.1
+[BOX64] Using native(wrapped) librt.so.1
+[BOX64] Using native(wrapped) libbsd.so.0
+[BOX64] Error loading needed lib libsentry.so
+[BOX64] Warning: Cannot dlopen("libsentry.so"/0x102231c, 2)
+libsentry.so not found
+Failed loading libsentry.so: Cannot dlopen("libsentry.so"/0x102231c, 2)
+
+clearing dyntimers: 0
+reset
+locale lang: Spanish
+[BOX64] Using native(wrapped) libdbus-1.so.3
+[BOX64] Using native(wrapped) libX11.so.6
+[BOX64] Using native(wrapped) libxcb.so.1
+[BOX64] Using native(wrapped) libXau.so.6
+[BOX64] Using native(wrapped) libXdmcp.so.6
+[BOX64] Using native(wrapped) libXext.so.6
+[BOX64] Using native(wrapped) libXcursor.so.1
+[BOX64] Using native(wrapped) libXfixes.so.3
+[BOX64] Using native(wrapped) libXrender.so.1
+[BOX64] Using native(wrapped) libXi.so.6
+[BOX64] Using native(wrapped) libXrandr.so.2
+[BOX64] Using native(wrapped) libXss.so.1
+[18:38:02.617] YO WHAT /tmp/weston/lib_aarch64/graphics/mesa_x11_stub::/tmp/weston/lib_aarch64:
+[18:38:02.617] launching 'bin/Xwayland'
+(WW) Option "-listen" for file descriptors is deprecated
+Please use "-listenfd" instead.
+(WW) Option "-listen" for file descriptors is deprecated
+Please use "-listenfd" instead.
+xwayland glamor: GBM backend (default) is not available
+Missing Wayland requirements for glamor GBM backend
+Failed to initialize glamor, falling back to sw
+[18:38:02.931] xfixes version: 5.0
+[18:38:03.131] created wm, root 74
+[BOX64] Using native(wrapped) libudev.so.1
+Create joystick: 0 0 Anbernic RG40XX-H Controller ODROID Go 2 65537 0
+Add joystick: Anbernic RG40XX-H Controller
+Opening audio device
+[BOX64] Using native(wrapped) libpulse.so.0
+Audio: pulseaudio 44100 33056 2 1024
+Use threaded preload!
+Number of sounds: 267
+Longest preloaded: 276.3232727050781
+Startup data read took 2.727843085
+Startup data size: 58MB
+Num to preload: 240
+Sound bank took 76.242810995
+Create window: 1280 720 8226
+SDL2 Window Resolution: 640 480
+LIBGL: Initialising gl4es
+LIBGL: v1.1.7 built on Mar 10 2025 05:34:02
+LIBGL: Using GLES 2.0 backend
+LIBGL: Hardware test on current Context...
+LIBGL: Hardware Full NPOT detected and used
+LIBGL: Extension GL_EXT_blend_minmax  detected and used
+LIBGL: FBO are in core, and so used
+LIBGL: PointSprite are in core, and so used
+LIBGL: CubeMap are in core, and so used
+LIBGL: BlendColor is in core, and so used
+LIBGL: Blend Subtract is in core, and so used
+LIBGL: Blend Function and Equation Separation is in core, and so used
+LIBGL: Texture Mirrored Repeat is in core, and so used
+LIBGL: Extension GL_OES_mapbuffer  detected
+LIBGL: Extension GL_OES_element_index_uint  detected and used
+LIBGL: Extension GL_OES_packed_depth_stencil  detected and used
+LIBGL: Extension GL_OES_depth24  detected and used
+LIBGL: Extension GL_OES_rgb8_rgba8  detected and used
+LIBGL: Extension GL_EXT_texture_format_BGRA8888  detected and used
+LIBGL: Extension GL_OES_depth_texture  detected and used
+LIBGL: Extension GL_OES_texture_stencil8  detected and used
+LIBGL: Extension GL_EXT_texture_rg  detected and used
+LIBGL: Extension GL_EXT_color_buffer_float  detected and used
+LIBGL: Extension GL_EXT_color_buffer_half_float  detected and used
+LIBGL: high precision float in fragment shader available and used
+LIBGL: Max vertex attrib: 16
+LIBGL: Extension GL_OES_standard_derivatives  detected and used
+LIBGL: Extension GL_ARM_shader_framebuffer_fetch detected and used
+LIBGL: Extension GL_OES_get_program_binary  detected and used
+LIBGL: Number of supported Program Binary Format: 1
+LIBGL: Max texture size: 8192
+LIBGL: Max Varying Vector: 15
+LIBGL: Texture Units: 16/16 (hardware: 16), Max lights: 8, Max planes: 6
+LIBGL: Max Color Attachments: 1 / Draw buffers: 1
+LIBGL: Hardware vendor is ARM
+LIBGL: Targeting OpenGL 2.1
+LIBGL: Not trying to batch small subsequent glDrawXXXX
+LIBGL: Trying to use VBO
+LIBGL: glXMakeCurrent FBO workaround enabled
+LIBGL: FBO workaround for using binded texture enabled
+LIBGL: Force texture for Attachment color0 on FBO
+LIBGL: Hack to trigger a SwapBuffers when a Full Framebuffer Blit on default FBO is done
+LIBGL: Current folder is:/userdata/roms/ports/pepper/gamedata
+LIBGL: Texture Copies will be skipped
+LIBGL: Framebuffer Textures will be scaled by 0.25
+Crusty's SDL2 backend is running with these attributes: 
+Red Size: 8
+Green Size: 8
+Blue Size: 8
+Alpha Size: 8
+Buffer Size: 32
+Double Buffer: 1
+Depth Size: 24
+Stencil Size: 8
+Accum Red Size: 0
+Accum Green Size: 0
+Accum Blue Size: 0
+Accum Alpha Size: 0
+Multisample Buffers: 0
+Multisample Samples: 0
+Context Major Version: 3
+Context Minor Version: 2
+Context Profile Mask: 4
+
+
+
+
+
+Renderer: GL4ES wrapper - ptitSeb - 
+LIBGL: unshrinking shrinked texture for FBO
+Image read took 0.6831741259999973
+/tmp/weston/westonwrap.sh: línea 48: 26596 Killed                  XDG_CONFIG_HOME=/userdata/roms/ports/pepper/conf/config XDG_DATA_HOME=/userdata/roms/ports/pepper/conf/local /userdata/roms/ports/pepper/box64/box64 ./bin64/Chowdren
+---------------------------------------------------------------------------------------------------
+Your command has exited with exit code 137.
+Cleaning up
+Crusty loaded by pkill
+Started initializing...
+Version 0.4 built on 2025-04-10 22:01:57 with options: GLX_FRONTEND SDL2_BACKEND GBM_FIX CONTROLLER_HOOK CURSOR CURSOR_X EGL_LOADER SDL_LOADER GL4ES 
+Initializing EGL Loader
+Done initializing EGL Loader. Hooked functions: 0 / Passed through: 34
+Initializing SDL Loader
+Done initializing SDL Loader. Hooked functions: 0 / Passed through: 18
+Done initializing.
+00:01:31.219 [INFO] [seatd/client.c:465] Client disconnected
+(EE) failed to read Wayland events: Broken pipe
+00:01:31.319 [INFO] [seatd/seat.c:400] No clients on seat0 to activate
+00:01:31.320 [INFO] [seatd/seat.c:499] Closed client 1 on seat0
+seatd: ../common/linked_list.c:23: linked_list_remove: Assertion `elem->prev != NULL && elem->next != NULL' failed.
+/tmp/weston/westonwrap.sh: línea 3: 26565 Aborted                 LD_PRELOAD=$weston_preload $straceseat ./seatd  (da: /tmp/weston)
+/tmp/weston/westonwrap.sh: línea 3: 26572 Killed                  XWAYLAND_LD_LIBRARY_PATH=$gllib_xwayland LD_LIBRARY_PATH=$weston_backendlib:$LD_LIBRARY_PATH LD_PRELOAD=$weston_preload CRUSTY_SHOW_CURSOR=0 $strace ./wp_weston -c $WESTON_CONFIG -B $weston_backend $weston_renderer --shell=$weston_shell -i0 -Swayland-5 --xwayland  (da: /tmp/weston)
+Crusty loaded by pkill
+Started initializing...
+Version 0.4 built on 2025-04-10 22:01:57 with options: GLX_FRONTEND SDL2_BACKEND GBM_FIX CONTROLLER_HOOK CURSOR CURSOR_X EGL_LOADER SDL_LOADER GL4ES 
+Initializing EGL Loader
+Done initializing EGL Loader. Hooked functions: 0 / Passed through: 34
+Initializing SDL Loader
+Done initializing SDL Loader. Hooked functions: 0 / Passed through: 18
+Done initializing.
+pkill: un patrón que busque un nombre de proceso de más de 15 caracteres dará como resultado cero coincidencias
+Pruebe la opción «pkill -f» para buscar en la línea de comandos completa.
+Crusty loaded by pkill
+Started initializing...
+Version 0.4 built on 2025-04-10 22:01:57 with options: GLX_FRONTEND SDL2_BACKEND GBM_FIX CONTROLLER_HOOK CURSOR CURSOR_X EGL_LOADER SDL_LOADER GL4ES 
+Initializing EGL Loader
+Done initializing EGL Loader. Hooked functions: 0 / Passed through: 34
+Initializing SDL Loader
+Done initializing SDL Loader. Hooked functions: 0 / Passed through: 18
+Done initializing.
+Crusty loaded by rm
+Started initializing...
+Version 0.4 built on 2025-04-10 22:01:57 with options: GLX_FRONTEND SDL2_BACKEND GBM_FIX CONTROLLER_HOOK CURSOR CURSOR_X EGL_LOADER SDL_LOADER GL4ES 
+Initializing EGL Loader
+Done initializing EGL Loader. Hooked functions: 0 / Passed through: 34
+Initializing SDL Loader
+Done initializing SDL Loader. Hooked functions: 0 / Passed through: 18
+Done initializing.
+Crusty loaded by rm
+Started initializing...
+Version 0.4 built on 2025-04-10 22:01:57 with options: GLX_FRONTEND SDL2_BACKEND GBM_FIX CONTROLLER_HOOK CURSOR CURSOR_X EGL_LOADER SDL_LOADER GL4ES 
+Initializing EGL Loader
+Done initializing EGL Loader. Hooked functions: 0 / Passed through: 34
+Initializing SDL Loader
+Done initializing SDL Loader. Hooked functions: 0 / Passed through: 18
+Done initializing.
+Crusty loaded by rm
+Started initializing...
+Version 0.4 built on 2025-04-10 22:01:57 with options: GLX_FRONTEND SDL2_BACKEND GBM_FIX CONTROLLER_HOOK CURSOR CURSOR_X EGL_LOADER SDL_LOADER GL4ES 
+Initializing EGL Loader
+Done initializing EGL Loader. Hooked functions: 0 / Passed through: 34
+Initializing SDL Loader
+Done initializing SDL Loader. Hooked functions: 0 / Passed through: 18
+Done initializing.
+rm: no se puede borrar '/tmp/weston_runtime/wayland-0.lock': No such file or directory
+/userdata/roms/ports/pepper
+Westonwrap 0.2.7.1
+gptokeyb is running, using it as a kill signal
+grep: /usr/lib/python3.11/site-packages/configgen/generators/sh/shGenerator.py: No such file or directory
+cp: no se puede efectuar `stat' sobre '/usr/lib/python3.11/site-packages/configgen/generators/sh/shGenerator.py': No such file or directory
+grep: /usr/lib/python3.11/site-packages/configgen/generators/sh/shGenerator.py: No such file or directory
+cp: no se puede crear el fichero regular '/usr/lib/python3.11/site-packages/configgen/generators/sh/shGenerator.py': No such file or directory
+Making /boot writable...
+Mounting the overlay file...
+Saving the real overlay to disk...
+sending incremental file list
+.local/state/wireplumber/
+.local/state/wireplumber/default-routes
+.local/state/wireplumber/stream-properties
+
+sent 2,155 bytes  received 83 bytes  4,476.00 bytes/sec
+total size is 39,023  speedup is 17.44
+Umounting the overlay file...
+Making /boot read only...
+Synchronizing...
+Success.
+/userdata/system/.local/share/PortMaster/control.txt: línea 48: /tmp/gamecontrollerdb.txt: No such file or directory
+/tmp/weston/westonwrap.sh: línea 95: [: : se esperaba una expresión entera
+Running in aarch64 mode
+Cleaning up
+pkill: un patrón que busque un nombre de proceso de más de 15 caracteres dará como resultado cero coincidencias
+Pruebe la opción «pkill -f» para buscar en la línea de comandos completa.
+rm: no se puede borrar '/run/seatd.sock': No such file or directory
+rm: no se puede borrar '/tmp/drmpipe': No such file or directory
+rm: no se puede borrar '/tmp/weston_runtime/wayland-0.lock': No such file or directory
+
+===== POST-MORTEM lun 26 ene 2026 18:39:31 -05 =====
+Exit code: 0
+--- swapon --show ---
+NAME       TYPE        SIZE   USED PRIO
+/dev/zram0 partition 486,6M 103,4M 1000
+--- /proc/swaps ---
+Filename				Type		Size	Used	Priority
+/dev/zram0                              partition	498312	105832	1000
+--- free -m ---
+               total       usado       libre  compartido   búf/caché  disponible
+Mem:             973         203         626           1         153         770
+Inter:           486         103         383
+--- OOM (dmesg tail) ---
+[ 3721.078494] udevd invoked oom-killer: gfp_mask=0x27080c0(GFP_KERNEL_ACCOUNT|__GFP_ZERO|__GFP_NOTRACK), nodemask=0, order=2, oom_score_adj=-1000
+[ 3721.078577] [<ffffff8008161224>] oom_kill_process+0x90/0x408
+[ 3721.078790] [ pid ]   uid  tgid total_vm      rss nr_ptes nr_pmds swapents oom_score_adj name
+[ 3721.079621] Out of memory: Kill process 26596 (Chowdren) score 578 or sacrifice child
+[ 3721.079704] Killed process 26596 (Chowdren) total-vm:1609972kB, anon-rss:267232kB, file-rss:243700kB, shmem-rss:8kB
+--- zram stats ---
+107487232 30915948 33853440        0 350806016     2398     5401     1248
+   24602        0   196816      340  1288165        0 10305320    46090        0    19710    46460
+===== END POST-MORTEM =====
+
+/userdata/system/.local/share/PortMaster/funcs.txt: línea 136: 26505 Killed                  $GPTOKEYB "$BINARY" -k  (da: /userdata/roms/ports/pepper/gamedata)

@@ -26,8 +26,8 @@ GAMEDIR="/$directory/ports/pepper"
 mkdir -p /tmp
 touch /tmp/gamecontrollerdb.txt 2>/dev/null || true
 
-# logging
-> "$GAMEDIR/log.txt" && exec > >(tee "$GAMEDIR/log.txt") 2>&1
+# logging disabled for now
+#> "$GAMEDIR/log.txt" && exec > >(tee "$GAMEDIR/log.txt") 2>&1
 
 # gl4es (kept, but we force drivers below explicitly)
 if [ -f "${controlfolder}/libgl_${CFW_NAME}.txt" ]; then 
@@ -49,12 +49,13 @@ export SDL_GAMECONTROLLERCONFIG="$sdl_controllerconfig"
 export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:$GAMEDIR/box64/native"
 
 # Force SDL DynAPI to load SDL2 by soname (lets us override via BOX64_LD_LIBRARY_PATH)
-#export SDL_DYNAMIC_API="libSDL2-2.0.so.0"
-export SDL_DYNAMIC_API="$GAMEDIR/gamedata/lib/libSDL2-2.0.so.0"
+export SDL_DYNAMIC_API="libSDL2-2.0.so.0"
+#this line loads the libSDL2 that I got from the hollow knight port. (does not work at the moment)
+#export SDL_DYNAMIC_API="$GAMEDIR/gamedata/lib/libSDL2-2.0.so.0"
 
 # x86_64 libs search path (put gamedata/lib FIRST so your shipped SDL2 wins)
 #export BOX64_LD_LIBRARY_PATH="$GAMEDIR/gamedata/lib:$GAMEDIR/box64/native:$GAMEDIR/gamedata:$GAMEDIR/gamedata/bin64"
-export BOX64_LD_LIBRARY_PATH="$GAMEDIR/gamedata/lib:$GAMEDIR/gamedata/sentry:$GAMEDIR/box64/native:$GAMEDIR/gamedata:$GAMEDIR/gamedata/bin64"
+export BOX64_LD_LIBRARY_PATH="$GAMEDIR/lib:$GAMEDIR/gamedata/sentry:$GAMEDIR/box64/native:$GAMEDIR/gamedata:$GAMEDIR/gamedata/bin64"
 
 # ---- GL/EGL forcing (via gl4es bundle) ----
 export SDL_VIDEO_GL_DRIVER="$GAMEDIR/gl4es/libGL.so.1"
@@ -79,7 +80,7 @@ export PATH="$GAMEDIR/gamedata/sentry:$PATH"
 export CHOWDREN_FPS=60
 
 # ---- box64 config ----
-export BOX64_LOG=1
+export BOX64_LOG=2
 export BOX64_ALLOWMISSINGLIBS=1
 export BOX64_DYNAREC=1
 export BOX64_NOGTK=1
@@ -93,20 +94,6 @@ $GPTOKEYB "Chowdren" -c "$GAMEDIR/pepper.gptk" &
 pm_message "Loading, please wait..."
 
 
-#"$GAMEDIR/box64/box64" "bin64/Chowdren"
-
-env -i \
-  HOME="$HOME" USER="$USER" PATH="$PATH" \
-  SDL_GAMECONTROLLERCONFIG="$SDL_GAMECONTROLLERCONFIG" \
-  SDL_DYNAMIC_API="libSDL2-2.0.so.0" \
-  SDL_VIDEO_GL_DRIVER="$SDL_VIDEO_GL_DRIVER" \
-  SDL_VIDEO_EGL_DRIVER="$SDL_VIDEO_EGL_DRIVER" \
-  BOX64_LOG=1 BOX64_DYNAREC=1 BOX64_ALLOWMISSINGLIBS=1 \
-  BOX64_LD_LIBRARY_PATH="$BOX64_LD_LIBRARY_PATH" \
-  BOX64_LIBGL="$BOX64_LIBGL" BOX64_LIBEGL="$BOX64_LIBEGL" \
-  BOX64_NATIVELIBS="" \
-  CHOWDREN_FPS="$CHOWDREN_FPS" \
-  SDL_DYNAMIC_API="$GAMEDIR/gamedata/lib/libSDL2-2.0.so.0" \
-  "$GAMEDIR/box64/box64" "bin64/Chowdren"
+"$GAMEDIR/box64/box64" "bin64/Chowdren"
 
 pm_finish

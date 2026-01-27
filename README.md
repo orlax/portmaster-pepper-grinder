@@ -1,124 +1,150 @@
-# Pepper Grinder (Chowdren 64-bit) on Knulli - Current Status
+# Pepper Grinder (Chowdren 64-bit) on Knulli — Current Status not working
 
-This repo documents my attempt to run the game Pepper Grinder with PortMasters on a retro handheld.
+This repo documents my attempt to run **Pepper Grinder** on a retro handheld using PortMaster and the Chowdren (64-bit) build (GOG version, DRM-free).
 
-[Pepper Grinder](https://www.gog.com/en/game/pepper_grinder)
+Buy the game here: [Pepper Grinder](https://www.gog.com/en/game/pepper_grinder)
 
 the game was built using construct 2 and exported with Chowdren, very much like Iconoclasts 
 this port is based on the existing [iconoclast port](https://portmaster.games/detail.html?name=iconoclasts)
 
+## Target device / firmware
 
-on Knulli (RG40XX-V). I am sharing the current state so others can help.
+Device: Anbernic RG40XX-V (H700, 1GB RAM)
+CFW: Knulli (gladiator-ii)
+Architecture: aarch64
+Renderer stack: Westonwrap/Westonpack + XWayland + GL4ES + Box64
+
+Note: Knulli does not expose a working native Wayland video driver for this binary (forcing SDL_VIDEODRIVER=wayland fails).
 
 ## how to use whats already here? 
 
-put this repo on your device and copy the game files to the "gamedata" folder 
-gamefiles should be extracted from the GOG version of the game as that one is DRM-free (no steam stuff) 
-then you can attempt to execute run.shs
+Copy this repo into your device ports folder:
 
+roms/ports/pepper/
+
+Extract your GOG Pepper Grinder game files and copy them into:
+
+roms/ports/pepper/gamedata/ <- you have to create the gamedata folder
+(GOG is recommended because it is DRM-free.)
+
+Run: ./weston.sh 
+
+## ✅ What works
+
+The graphical pipeline does launch:
+
+- Weston starts
+- XWayland starts
+- GL4ES initializes
+- SDL creates a window
+
+The game begins loading content successfully:
+
+- reads Assets.dat
+- loads ~58MB startup data
+- preloads ~240 audio assets (“Sound bank” step)
+
+## ❌ What fails
+
+The game is consistently killed by the Linux OOM-killer (Out-of-Memory), after heavy asset/audio preload.
+
+This is not an application-level crash. The OS forcibly kills the process once memory pressure peaks.
+
+**Symptoms**
+
+Exit code often appears as 137 (SIGKILL) or the process ends abruptly
+Kernel logs show: Out of memory: Kill process (Chowdren)
+```
+===== POST-MORTEM lun 26 ene 2026 18:39:31 -05 =====
+Exit code: 0
+--- swapon --show ---
+NAME       TYPE        SIZE   USED PRIO
+/dev/zram0 partition 486,6M 103,4M 1000
+--- /proc/swaps ---
+Filename				Type		Size	Used	Priority
+/dev/zram0                              partition	498312	105832	1000
+--- free -m ---
+               total       usado       libre  compartido   búf/caché  disponible
+Mem:             973         203         626           1         153         770
+Inter:           486         103         383
+--- OOM (dmesg tail) ---
+[ 3721.078494] udevd invoked oom-killer: gfp_mask=0x27080c0(GFP_KERNEL_ACCOUNT|__GFP_ZERO|__GFP_NOTRACK), nodemask=0, order=2, oom_score_adj=-1000
+[ 3721.078577] [<ffffff8008161224>] oom_kill_process+0x90/0x408
+[ 3721.078790] [ pid ]   uid  tgid total_vm      rss nr_ptes nr_pmds swapents oom_score_adj name
+[ 3721.079621] Out of memory: Kill process 26596 (Chowdren) score 578 or sacrifice child
+[ 3721.079704] Killed process 26596 (Chowdren) total-vm:1609972kB, anon-rss:267232kB, file-rss:243700kB, shmem-rss:8kB
+--- zram stats ---
+107487232 30915948 33853440        0 350806016     2398     5401     1248
+   24602        0   196816      340  1288165        0 10305320    46090        0    19710    46460
+===== END POST-MORTEM =====
+```
+Last visible lines before kill (runtime log excerpt)
+```
+...
+LIBGL: Extension GL_OES_rgb8_rgba8  detected and used
+LIBGL: Extension GL_EXT_texture_format_BGRA8888  detected and used
+LIBGL: Extension GL_OES_depth_texture  detected and used
+LIBGL: Extension GL_OES_texture_stencil8  detected and used
+LIBGL: Extension GL_EXT_texture_rg  detected and used
+LIBGL: Extension GL_EXT_color_buffer_float  detected and used
+LIBGL: Extension GL_EXT_color_buffer_half_float  detected and used
+LIBGL: high precision float in fragment shader available and used
+LIBGL: Max vertex attrib: 16
+LIBGL: Extension GL_OES_standard_derivatives  detected and used
+LIBGL: Extension GL_ARM_shader_framebuffer_fetch detected and used
+LIBGL: Extension GL_OES_get_program_binary  detected and used
+LIBGL: Number of supported Program Binary Format: 1
+LIBGL: Max texture size: 8192
+LIBGL: Max Varying Vector: 15
+LIBGL: Texture Units: 16/16 (hardware: 16), Max lights: 8, Max planes: 6
+LIBGL: Max Color Attachments: 1 / Draw buffers: 1
+LIBGL: Hardware vendor is ARM
+LIBGL: Targeting OpenGL 2.1
+LIBGL: Not trying to batch small subsequent glDrawXXXX
+LIBGL: Trying to use VBO
+LIBGL: glXMakeCurrent FBO workaround enabled
+LIBGL: FBO workaround for using binded texture enabled
+LIBGL: Force texture for Attachment color0 on FBO
+LIBGL: Hack to trigger a SwapBuffers when a Full Framebuffer Blit on default FBO is done
+LIBGL: Current folder is:/userdata/roms/ports/pepper/gamedata
+LIBGL: Texture Copies will be skipped
+LIBGL: Framebuffer Textures will be scaled by 0.25
+Crusty's SDL2 backend is running with these attributes: 
+Red Size: 8
+Green Size: 8
+Blue Size: 8
+Alpha Size: 8
+Buffer Size: 32
+Double Buffer: 1
+Depth Size: 24
+Stencil Size: 8
+Accum Red Size: 0
+Accum Green Size: 0
+Accum Blue Size: 0
+Accum Alpha Size: 0
+Multisample Buffers: 0
+Multisample Samples: 0
+Context Major Version: 3
+Context Minor Version: 2
+Context Profile Mask: 4
+Renderer: GL4ES wrapper - ptitSeb - 
+LIBGL: unshrinking shrinked texture for FBO
+Image read took 0.6831741259999973
+/tmp/weston/westonwrap.sh: línea 48: 26596 Killed                  XDG_CONFIG_HOME=/userdata/roms/ports/pepper/conf/config XDG_DATA_HOME=/userdata/roms/ports/pepper/conf/local /userdata/roms/ports/pepper/box64/box64 ./bin64/Chowdren
+---------------------------------------------------------------------------------------------------
+Your command has exited with exit code 137.
+```
 
 ## The current status 
-with the current configuration of the run.sh file and a stub library for "libsentry" I created the game 
-seems to have a "correct initialization" however it hangs/kills the processs very early. you can find a 
-full log in the full_logs.txt file. 
+So I think i got to a place where the actual game tries to open but the way this particular game operates is pre-loading too many asssets for this low-powered device to handle. 
+also I think there is a lot of overhead with the current graphics stack, in the case of Iconoclasts it was a 32 bit executable wich I think was able to run with less overhead. 
+for this game as it is 64 bits the only way I found it was able to actually create a window was using westonpack just trying to run box64 failed 
 
-the last few lines of the logs are 
-```
-20514|0x2cb3689: Calling strlen("sentry_init: ") => return 0xD
-20514|0x2cb364f: Calling fwrite(0x7F8046D1A1, 0xD, 0x1, ...) =>sentry_init:  return 0x1
-20514|0x2cb3657: Calling fflush(0x7F806C25F0, 0xD, 0x1, ...) => return 0x0
-20514|0x2cb3c2e: Calling fwrite(0x7F8046D1A1, 0x1, 0x1, ...) =>0 return 0x1
-20514|0x2cb3c36: Calling fflush(0x7F806C25F0, 0x1, 0x1, ...) => return 0x0
-20514|0x2cb3b32: Calling fputc(0xA, 0x7F806C25F0, 0x1, ...) =>
- return 0xA
-20514|0x2cae9b9: Calling fflush(0x7F806C25F0, 0x7F806C25F0, 0x1, ...) => return 0x0
-20514|0x2cae9da: Calling free(0x56661B80, 0x7F806C25F0, 0x1, ...) => return 0x0
-20514|0x2caecf7: Calling strlen("CHOWDREN_BACKEND_PICKER=GOG") => return 0x1B
-20514|0x2caef16: Calling strncmp(0x7F8046D239, 0x1024F41, 0x3, ...) => return 0xFFFFFF9F
-20514|0x2caef71: Calling strncmp(0x7F8046D239, 0x102FA4E, 0x3, ...) => return 0x2
-20514|0x2cb3689: Calling strlen("clearing dyntimers: ") => return 0x14
-20514|0x2cb364f: Calling fwrite(0x7F8046D251, 0x14, 0x1, ...) =>clearing dyntimers:  return 0x1
-20514|0x2cb3657: Calling fflush(0x7F806C25F0, 0x14, 0x1, ...) => return 0x0
-20514|0x2cb3ece: Calling fwrite(0x7F8046D251, 0x1, 0x1, ...) =>0 return 0x1
-20514|0x2cb3ed6: Calling fflush(0x7F806C25F0, 0x1, 0x1, ...) => return 0x0
-20514|0x2cb3b32: Calling fputc(0xA, 0x7F806C25F0, 0x1, ...) =>
- return 0xA
-20514|0x2cfbc46: Calling fflush(0x7F806C25F0, 0x7F806C25F0, 0x1, ...) => return 0x0
-20514|0x2cb3689: Calling strlen("reset
-") => return 0x6
-20514|0x2cb364f: Calling fwrite(0x7F8046D251, 0x6, 0x1, ...) =>reset
- return 0x1
-20514|0x2cb3657: Calling fflush(0x7F806C25F0, 0x6, 0x1, ...) => return 0x0
-20514|0x2cb3689: Calling strlen("locale lang: ") => return 0xD
-20514|0x2cb364f: Calling fwrite(0x7F8046D271, 0xD, 0x1, ...) =>locale lang:  return 0x1
-20514|0x2cb3657: Calling fflush(0x7F806C25F0, 0xD, 0x1, ...) => return 0x0
-20514|0x4919b2c: Calling pthread_mutex_lock(0x6350408, 0xD, 0x1, ...) => return 0x0
-20514|0x4919b9f: Calling syscall(186, 0xd, 0x1....) =>[BOX64] 20514| 0x300508b3: Calling libc syscall 0xBA (186) 0xd 0x1 (nil) 0x7f8046d279 0x1050152
- return 0x5022
-20514|0x4919bb6: Calling pthread_mutex_unlock(0x6350408, 0xD, 0x1, ...) => return 0x0
-20514|0x2ca4319: Calling strlen("English") => return 0x7
-20514|0x2c9f44f: Calling __cxa_atexit(0x2CA41D0, 0x4C4AF80, 0x1000000, ...) => return 0x0
-20514|0x4919c5b: Calling pthread_mutex_lock(0x6350408, 0x4C4AF80, 0x1000000, ...) => return 0x0
-20514|0x4919c73: Calling pthread_mutex_unlock(0x6350408, 0x4C4AF80, 0x1000000, ...) => return 0x0
-20514|0x2c9f27d: Calling getenv("LANG") => return 0x7FFE9D1902(es_ES.UTF-8)
-20514|0x2ca41f9: Calling strlen("Spanish") => return 0x7
-20514|0x2cb35e4: Calling fwrite(0x4C4AF81, 0x7, 0x1, ...) =>Spanish return 0x1
-20514|0x2c9f2a7: Calling fflush(0x7F806C25F0, 0x7, 0x1, ...) => return 0x0
-20514|0x2cb3b32: Calling fputc(0xA, 0x7F806C25F0, 0x1, ...) =>
- return 0xA
-20514|0x2c9f2b3: Calling fflush(0x7F806C25F0, 0x7F806C25F0, 0x1, ...) => return 0x0
-20514|0x2c9f2c9: Calling SDL_SetHint(0x1030F95, 0x1021640, 0x1, ...) => return 0x1
-20514|0x2c9f2da: Calling setenv("SDL_VIDEO_X11_WMCLASS", "PepperGrinder", 0) => return 0x0
-20514|0x2c9f2eb: Calling setenv("SDL_VIDEO_WAYLAND_WMCLASS", "PepperGrinder", 0) => return 0x0
-20514|0x2c9f301: Calling SDL_SetHint(0x102F88E, 0x10355A5, 0x0, ...) => return 0x1
-20514|0x2c9f317: Calling SDL_SetHint(0x10310BD, 0x1035078, 0x0, ...) => return 0x1
-20514|0x2c9f326: Calling SDL_SetHint(0x103109E, 0x1035078, 0x0, ...) => return 0x1
-20514|0x2c9f335: Calling SDL_SetHint(0x102FB11, 0x10355A5, 0x0, ...) => return 0x1
-20514|0x2c9f344: Calling SDL_SetHint(0x102F8A5, 0x1035078, 0x0, ...) => return 0x1
-20514|0x2c9f353: Calling SDL_SetHint(0x1030892, 0x10355A5, 0x0, ...) => return 0x1
-20514|0x2c9f35d: Calling SDL_Init(0x100020, 0x10355A5, 0x0, ...) => return 0x0
-20514|0x2c9f366: Calling SDL_IsTextInputActive(0x100020, 0x10355A5, 0x0, ...) => return 0x1
-20514|0x2c9f36f: Calling SDL_StopTextInput(0x100020, 0x10355A5, 0x0, ...) => return 0x1
-20514|0x2c9f37b: Calling SDL_EventState(0x400, 0x0, 0x0, ...) => return 0x1
-20514|0x2c9f380: Calling SDL_GetPerformanceCounter(0x400, 0x0, 0x0, ...) => return 0xD6867DCEF8
-20514|0x2ca1d46: Calling SDL_GetHint(0x102FCD2, 0x4C4AA10, 0x0, ...) => return 0x0
-20514|0x2ca1d46: Calling SDL_GetHint(0x102F627, 0x4C4AA28, 0x0, ...) => return 0x0
-20514|0x2c9f4a8: Calling SDL_SetHintWithPriority(0x102F627, 0x1051899, 0x2, ...) => return 0x1
-20514|0x2c9f4b8: Calling SDL_SetHintWithPriority(0x102FCD2, 0x1051899, 0x2, ...) => return 0x1
-20514|0x2c9f4ce: Calling SDL_RWFromFile(0x101C55B, 0x102E6C7, 0x2, ...) => return 0x5666EE00
-20514|0x2c9f4db: Calling SDL_GameControllerAddMappingsFromRW(0x5666EE00, 0x1, 0x2, ...) => return 0x255
-20514|0x2c9f4e5: Calling SDL_InitSubSystem(0x2000, 0x1, 0x2, ...) => return 0x0
-20514|0x2c9f4f4: Calling SDL_RWFromFile(0x101C47A, 0x102E6C7, 0x2, ...) => return 0x0
-20514|0x2c9f501: Calling SDL_GameControllerAddMappingsFromRW(0x0, 0x1, 0x2, ...) => return 0xFFFFFFFF
-20514|0x2c9f506: Calling SDL_NumJoysticks(0x0, 0x1, 0x2, ...) => return 0x1
-20514|0x2c9fc03: Calling SDL_IsGameController(0x0, 0x1, 0x2, ...) => return 0x1
-20514|0x2c9fc0e: Calling SDL_GameControllerOpen(0x0, 0x1, 0x2, ...) => return 0x566CE620
-20514|0x2c9fc1e: Calling SDL_GameControllerGetJoystick(0x566CE620, 0x1, 0x2, ...) => return 0x566CE920
-20514|0x2c9fcae: Calling SDL_JoystickInstanceID(0x566CE920, 0x1, 0x2, ...) => return 0x0
-20514|0x4931278: Calling malloc(0x100, 0x1, 0x2, ...) => return 0x566D1270
-20514|0x2ca4496: Calling SDL_JoystickName(0x566CE920, 0x566CE620, 0x566CE920, ...) => return 0x56690C10
-20514|0x2ca41f9: Calling strlen("Anbernic RG40XX-H Controller") => return 0x1C
-20514|0x2ca44a8: Calling SDL_JoystickGetDeviceGUID(0x0, 0x56690C10, 0x72, ...) => return 0x100000019
+## Next Steps: 
+- Try to get this game to "open" with Box64 "only" but my attempts to use "export SDL_DYNAMIC_API="libSDL2-2.0.so.0" all failed.
+- Do something to reduce the actual size of the Data.assets sounds? would require to patch this and I dont think I have the ability
+- Get help from the actual developers of the game.
 
-```
-
-## my current suspicions are: 
-- the game is failing to connect to a video backend correctly and it just so happens to be right before the controllers are initialized.
-- there really is a problem with the controllers.
+I am leaving this at this point, if someone more experienced in this stuff than me wants to keep going, fork this repo! 
 
 
-## some other notes:
-- If I execute run.sh with with the dynamic sdl line commented the game actually runs the pre-load of assets but then we get a message that says:
-
-```
-Could not open window: eglQueryDevicesEXT is missing
-```
-my current understandment is that we NEED to use the dynamic SDL library so that this error does not happen. 
-- If I put lines to force an specific video driver kmsdrm/fbcon/wayland I get error messages saying they are not available.
-
-## My next Ideas?
-- look at creating a script that will run this using Westonpack stuff.
-- look at how other ports that use box64 are configured and see if there is something there I can learn from. 
-
-## Do I think this should be possible? 
-Yes I think the game should be able to run. 

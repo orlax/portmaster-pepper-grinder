@@ -1,0 +1,19 @@
+{
+  "65d8e94e517ba2bdb3fe03d1530a3ed1": {
+    "name": "Pepper Grinder (Linux)",
+    "metadata_offset": 0,
+    "image_count": 10260,
+    "sound_count": 267,
+    "font_count": 19,
+    "shader_count": 3,
+    "file_count": 0,
+    "format_version": 2,
+    "notes": "New format with offset+size pairs (8 bytes per entry). Metadata at start of file.",
+    "table_offsets": {
+      "images": 0,
+      "sounds": 82048,
+      "fonts": 84184,
+      "shaders": 84336
+    }
+  }
+} 

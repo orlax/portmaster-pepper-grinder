@@ -45,14 +45,64 @@ majority of ram still seems to be images.
 
 for a more detailed view of how this happened and how I was able to extract the files you can check the LLM generated summary at "Pepper Grinder Port Attempt for PortMaster.md"
 
+## Trying to Patch the game via LD_PRELOAD 
+
+My last attempt was to try to hook into the functions of the game loading textures into the GPU and halving texture resultion on that point, however. While the hooks worked and I could see the game become blurier on gameplay, ram comsumption stayed the same. 
+
+- with the pepper_optimizer.c game textures were blurry and ram stayed the same. 
+- with the pepper_optimizer_v2.c I tried to half texture resolution AND also keep track of the memory to free it once the texture is uploaded to gpu. BUT this makes the game crash. 
+
+to test this you need to build any of the files and run then: 
+
+### Building and Testing
+```bash
+# Build the hooks (on Ubuntu/Linux)
+gcc -shared -fPIC -O3 -o libpepperopt.so pepper_optimizer.c -ldl -lpthread -lm
+
+# Run with hook on Steam Deck
+LD_PRELOAD=/path/to/libpepperopt.so ./Chowdren
+```
+
+### Results
+```
+[PepperOpt2] ========================================
+[PepperOpt2] Session Summary:
+[PepperOpt2]   Total textures: 10258
+[PepperOpt2]   Scaled textures: 3079
+[PepperOpt2]   Original size: 601.58 MB
+[PepperOpt2]   Optimized size: 187.32 MB
+[PepperOpt2]   GPU memory saved: 414.25 MB
+[PepperOpt2]   Buffers freed: 0 (0.00 MB)
+[PepperOpt2] ========================================
+```
+
+**GPU memory was reduced by 414MB, but system RAM stayed at ~717MB.** This confirms that Chowdren keeps all decompressed image buffers in its own internal memory, not just in the GPU. The buffers are allocated BEFORE `glTexImage2D` is called, and Chowdren never frees them (likely needs them for CPU access or context recovery).
+
+### Why This Approach Failed
+```
+Chowdren's loading flow:
+1. Read compressed data from Assets.dat
+2. Decompress via zlib → 604MB allocated HERE (internal buffers)
+3. Call glTexImage2D() → We intercept HERE (too late!)
+4. GPU receives texture
+5. Internal buffers are NEVER freed
+```
+
+Attempting to free the buffers after GPU upload (`pepper_optimizer_v2.c` with `PEPPER_AGGRESSIVE_FREE=1`) causes a crash because Chowdren still uses those buffers internally.
+
+****
+
 so for now what I have achieved so far is tools to effectively be able to mod the games textures but nothing more. 
 
 the Scripts folder is full with the different tools I created, look at scripts.md for instructions. 
 
 ## What is next? 
-I don't know I think I am gonna rest from this project, I have this two ideas: 
-- figure out how to succesfully resize images and have the game still work normally.
-- PATCH the function of the game that actually loads the textures to half the size "on the fly" but this sounds like.. super complicated. 
+Nothing haha, I have exhausted the effort and knowledge I am willing to give. Here is my conclussion: 
 
+- Chowdren preloads everything into ram and needs it all to be the same to function.
+- textures cannot be resized and repacked. 
+- even if you half the textures send to GPU the engine keeps the assets on ram. 
+- I don't think it is possible to do this. But hey, YOU could prove me wrong? 
 
+All scripts on this project were vibe coded. 
 
